@@ -6,9 +6,11 @@ const { createError } = require("../../helpers/createError");
 const router = express.Router();
 
 const addContactsSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
+  name: Joi.string().alphanum().min(3).max(20).required(),
+  email: Joi.string().email().required(),
+  phone: Joi.string()
+    .pattern(/\(([0-9]{3})\)([ ])([0-9]{3})([-])([0-9]{4})/, "(123) 456-7890")
+    .required(),
 });
 
 router.get("/", async (req, res, next) => {
