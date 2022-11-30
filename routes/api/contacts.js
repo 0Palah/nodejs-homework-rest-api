@@ -1,7 +1,8 @@
 const express = require("express");
-const contacts = require("../../models/contacts");
 const Joi = require("joi");
+
 const { createError } = require("../../helpers/createError");
+const contacts = require("../../models/contacts");
 
 const router = express.Router();
 
@@ -30,7 +31,7 @@ router.get("/:contactId", async (req, res, next) => {
     const result = await contacts.getContactById(contactId);
 
     if (!result) {
-      res.status(404).json({ message: "Not found" });
+      throw createError({ status: 404, message: "Not found" });
     }
 
     res.json(result);
@@ -46,9 +47,7 @@ router.post("/", async (req, res, next) => {
     const { error } = addContactsSchema.validate(body);
 
     if (error) {
-      res.status(400).json({ message: error.message });
-
-      return;
+      throw createError({ status: 400, message: error.message });
     }
 
     const result = await contacts.addContact(body);
@@ -81,17 +80,13 @@ router.put("/:contactId", async (req, res, next) => {
     const body = req.body;
 
     if (Object.keys(body).length === 0) {
-      res.status(400).json({ message: "missing fields" });
-
-      return;
+      throw createError({ status: 400, message: "missing fields" });
     }
 
     const { error } = addContactsSchema.validate(body);
 
     if (error) {
-      res.status(400).json({ message: error.message });
-
-      return;
+      throw createError({ status: 400, message: error.message });
     }
 
     const result = await contacts.updateContact(contactId, body);

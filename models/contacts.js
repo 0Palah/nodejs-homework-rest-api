@@ -11,8 +11,6 @@ const listContacts = async () => {
 };
 
 const getContactById = async (contactId) => {
-  // const contacts = await listContacts();
-
   const result = contacts.find((el) => el.id === contactId);
 
   if (!result) {
@@ -25,8 +23,6 @@ const getContactById = async (contactId) => {
 // ----
 
 const removeContact = async (contactId) => {
-  // const contacts = await listContacts();
-
   const index = contacts.findIndex((item) => item.id === contactId);
 
   if (index === -1) {
@@ -43,8 +39,6 @@ const removeContact = async (contactId) => {
 // -----
 
 const addContact = async (body) => {
-  // const contacts = await listContacts();
-
   const newContact = { id: nanoid(), ...body };
 
   contacts.push(newContact);
@@ -61,7 +55,6 @@ async function updateContacts(newContact) {
 // ------
 
 const updateContact = async (contactId, body) => {
-  const contacts = await listContacts();
   const { name, email, phone } = body;
 
   const index = contacts.findIndex((item) => {
