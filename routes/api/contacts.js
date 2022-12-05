@@ -25,4 +25,10 @@ router.put(
   controllerWrapper(controllers.updateContact)
 );
 
+router.patch(
+  "/:contactId/favorite",
+  middlewares.validateBody(schemas.contact.updateFavoriteByIdSchema),
+  controllerWrapper(controllers.updateFavoriteById)
+);
+
 module.exports = router;
