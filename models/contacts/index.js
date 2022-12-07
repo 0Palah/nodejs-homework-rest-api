@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
+const emailRegexp = require("../../helpers/validateEmail");
 
-const contactScema = new Schema(
+const contactSchema = new Schema(
   {
     name: {
       type: String,
@@ -8,6 +9,7 @@ const contactScema = new Schema(
     },
     email: {
       type: String,
+      match: emailRegexp,
       unique: true,
       required: [true, "Set email for contact"],
     },
@@ -27,6 +29,6 @@ const contactScema = new Schema(
   }
 );
 
-const Contact = model("contact", contactScema);
+const Contact = model("contact", contactSchema);
 
 module.exports = Contact;
