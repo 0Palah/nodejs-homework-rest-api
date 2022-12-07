@@ -6,7 +6,7 @@ const registerUserSchema = Joi.object({
   password: Joi.string().min(8).required(),
   email: Joi.string().pattern(emailRegexp).required(),
   phone: Joi.string().pattern(phoneRegexp, "(123) 456-7890"),
-  subscription: Joi.string(),
+  subscription: Joi.string().valid("starter", "pro", "business"),
 });
 
 module.exports = { registerUserSchema };
