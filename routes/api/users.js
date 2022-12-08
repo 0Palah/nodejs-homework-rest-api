@@ -13,4 +13,10 @@ router.post(
   controllerWrapper(controllers.registerUser)
 );
 
+router.get(
+  "/login",
+  middlewares.validateBody(schemas.user.loginUserSchema),
+  controllerWrapper(controllers.loginUser)
+);
+
 module.exports = router;
