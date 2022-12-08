@@ -5,8 +5,13 @@ const phoneRegexp = require("../helpers/validatePhone");
 const registerUserSchema = Joi.object({
   password: Joi.string().min(8).required(),
   email: Joi.string().pattern(emailRegexp).required(),
-  phone: Joi.string().pattern(phoneRegexp, "(123) 456-7890"),
+  // phone: Joi.string().pattern(phoneRegexp, "(123) 456-7890"),
   subscription: Joi.string().valid("starter", "pro", "business"),
 });
 
-module.exports = { registerUserSchema };
+const loginUserSchema = Joi.object({
+  password: Joi.string().min(8).required(),
+  email: Joi.string().pattern(emailRegexp).required(),
+});
+
+module.exports = { registerUserSchema, loginUserSchema };
