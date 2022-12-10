@@ -34,6 +34,7 @@ router.delete(
 
 router.put(
   "/:contactId",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.contact.addContactsSchema),
   controllerWrapper(controllers.updateContact)
 );
