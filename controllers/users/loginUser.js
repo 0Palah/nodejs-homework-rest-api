@@ -20,6 +20,15 @@ async function loginUser(req, res) {
   if (!passwordCopare) {
     throw createError({ status: 401, message: "Email or password is wrong" });
   }
-  res.json({ token: "srgsrgsrgsrgsrgsrgsrgsrgsrgqrgsg" });
+
+  const payload = {
+    id: user.id,
+  };
+
+  const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: "1d" });
+
+  await User.findByIdAndUpdate(user.id, { token });
+
+  res.json({ token });
 }
 module.exports = loginUser;
