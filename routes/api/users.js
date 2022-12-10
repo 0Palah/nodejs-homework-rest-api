@@ -25,4 +25,10 @@ router.get(
   controllerWrapper(controllers.getCurrentUser)
 );
 
+router.post(
+  "/logout",
+  middlewares.authenticate,
+  controllerWrapper(controllers.logoutUser)
+);
+
 module.exports = router;
