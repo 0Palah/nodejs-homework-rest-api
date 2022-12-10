@@ -13,7 +13,11 @@ router.get(
   controllerWrapper(controllers.getAll)
 );
 
-router.get("/:contactId", controllerWrapper(controllers.getById));
+router.get(
+  "/:contactId",
+  middlewares.authenticate,
+  controllerWrapper(controllers.getById)
+);
 
 router.post(
   "/",
@@ -22,7 +26,11 @@ router.post(
   controllerWrapper(controllers.addContact)
 );
 
-router.delete("/:contactId", controllerWrapper(controllers.removeContact));
+router.delete(
+  "/:contactId",
+  middlewares.authenticate,
+  controllerWrapper(controllers.removeContact)
+);
 
 router.put(
   "/:contactId",
