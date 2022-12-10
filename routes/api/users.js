@@ -19,4 +19,10 @@ router.get(
   controllerWrapper(controllers.loginUser)
 );
 
+router.get(
+  "/current",
+  middlewares.authenticate,
+  controllerWrapper(controllers.getCurrentUser)
+);
+
 module.exports = router;
