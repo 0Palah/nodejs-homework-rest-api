@@ -1,6 +1,6 @@
 const Joi = require("Joi");
 const emailRegexp = require("../helpers/validateEmail");
-const phoneRegexp = require("../helpers/validatePhone");
+// const phoneRegexp = require("../helpers/validatePhone");
 
 const registerUserSchema = Joi.object({
   password: Joi.string().min(8).required(),

@@ -22,6 +22,8 @@ async function authenticate(req, res, next) {
     }
 
     req.user = user;
+
+    next();
   } catch (error) {
     if (!error.status) {
       error.status = 401;
