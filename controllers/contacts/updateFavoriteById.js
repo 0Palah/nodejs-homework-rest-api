@@ -5,10 +5,11 @@ const { createError } = require("../../helpers/createError");
 async function updateFavoriteById(req, res) {
   const { contactId } = req.params;
   const { favorite } = req.body;
-  console.log(favorite);
 
-  const result = await Contact.findByIdAndUpdate(
-    contactId,
+  const { _id } = req.user;
+
+  const result = await Contact.findOneAndUpdate(
+    { _id: contactId, owner: _id },
     { favorite },
     {
       new: true,

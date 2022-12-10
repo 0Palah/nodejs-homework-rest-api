@@ -41,6 +41,7 @@ router.put(
 
 router.patch(
   "/:contactId/favorite",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.contact.updateFavoriteByIdSchema),
   controllerWrapper(controllers.updateFavoriteById)
 );
