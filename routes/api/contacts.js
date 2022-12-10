@@ -13,6 +13,7 @@ router.get("/:contactId", controllerWrapper(controllers.getById));
 
 router.post(
   "/",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.contact.addContactsSchema),
   controllerWrapper(controllers.addContact)
 );
