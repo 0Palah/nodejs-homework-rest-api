@@ -7,7 +7,11 @@ const middlewares = require("../../middlewares");
 const schemas = require("../../schemas");
 const controllerWrapper = require("../../helpers/controllerWrapper");
 
-router.get("/", controllerWrapper(controllers.getAll));
+router.get(
+  "/",
+  middlewares.authenticate,
+  controllerWrapper(controllers.getAll)
+);
 
 router.get("/:contactId", controllerWrapper(controllers.getById));
 
