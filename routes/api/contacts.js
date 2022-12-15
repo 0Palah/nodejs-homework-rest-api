@@ -7,26 +7,41 @@ const middlewares = require("../../middlewares");
 const schemas = require("../../schemas");
 const controllerWrapper = require("../../helpers/controllerWrapper");
 
-router.get("/", controllerWrapper(controllers.getAll));
+router.get(
+  "/",
+  middlewares.authenticate,
+  controllerWrapper(controllers.getAll)
+);
 
-router.get("/:contactId", controllerWrapper(controllers.getById));
+router.get(
+  "/:contactId",
+  middlewares.authenticate,
+  controllerWrapper(controllers.getById)
+);
 
 router.post(
   "/",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.contact.addContactsSchema),
   controllerWrapper(controllers.addContact)
 );
 
-router.delete("/:contactId", controllerWrapper(controllers.removeContact));
+router.delete(
+  "/:contactId",
+  middlewares.authenticate,
+  controllerWrapper(controllers.removeContact)
+);
 
 router.put(
   "/:contactId",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.contact.addContactsSchema),
   controllerWrapper(controllers.updateContact)
 );
 
 router.patch(
   "/:contactId/favorite",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.contact.updateFavoriteByIdSchema),
   controllerWrapper(controllers.updateFavoriteById)
 );
