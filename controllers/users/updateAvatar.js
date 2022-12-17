@@ -18,7 +18,7 @@ async function updateAvatar(req, res) {
 
   await User.findByIdAndUpdate(_id, { avatarURL });
 
-  res.join({
+  res.json({
     avatarURL,
   });
 }
