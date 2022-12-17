@@ -11,8 +11,6 @@ async function updateAvatar(req, res) {
   const extension = path.extname(originalname);
   const filename = `${_id}${extension}`;
 
-  console.log(tempPath);
-
   await Jimp.read(tempPath)
     .then((image) => {
       image.cover(250, 250).write(tempPath);
