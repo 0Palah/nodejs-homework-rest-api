@@ -31,4 +31,10 @@ router.post(
   controllerWrapper(controllers.logoutUser)
 );
 
+// router.patch(
+//   "/avatars",
+//   middlewares.authenticate,
+//   middlewares.upload.single("avatar")
+// );
+
 module.exports = router;

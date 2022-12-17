@@ -2,7 +2,7 @@ const Contact = require("../../models/contacts/index");
 
 async function getAll(req, res) {
   const { _id } = req.user;
-  // const { page = 1, limit = 20, favorite = true } = req.query;
+
   const { page = 1, limit = 20, favorite } = req.query;
 
   const skip = (page - 1) * limit;
