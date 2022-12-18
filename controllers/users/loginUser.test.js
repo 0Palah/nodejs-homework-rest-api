@@ -17,11 +17,8 @@ describe("test users routes", () => {
 
   afterAll(() => {
     server.close();
+    mongoose.disconnect();
   });
-
-  // beforeEach(async () => {
-
-  // });
 
   //1.Ендпоінт відповідає зі статус кодом 200 та токеном в боді
   //2. В БД успішно записався токен користувача
