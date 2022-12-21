@@ -20,7 +20,6 @@ async function authenticate(req, res, next) {
     if (!user || !user.token || user.token !== token) {
       throw createError({ status: 401, message: "Not authorized" });
     }
-
     req.user = user;
 
     next();
