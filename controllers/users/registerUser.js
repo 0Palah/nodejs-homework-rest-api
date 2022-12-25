@@ -47,4 +47,4 @@ async function registerUser(req, res) {
 
 module.exports = registerUser;
 
-// <a href="http://localhost:3000/api/users/verify/b79558e6-77a8-48c7-bb27-4f09e469a515">Click to verify your email</a>
+
