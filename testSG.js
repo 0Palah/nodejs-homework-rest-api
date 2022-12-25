@@ -1,7 +1,7 @@
 const sgMail = require("@sendgrid/mail");
 
-const SENDGRID_API_KEY =
-  "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";
+const SENDGRID_API_KEY = "";
+
 const META_MAIL = "oleg.pal@meta.ua";
 
 console.log(SENDGRID_API_KEY);
