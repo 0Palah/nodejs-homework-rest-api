@@ -23,6 +23,10 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
+    refreshToken: {
+      type: String,
+      default: "",
+    },
     avatarURL: {
       type: String,
       required: [true, "Avatar is required"],

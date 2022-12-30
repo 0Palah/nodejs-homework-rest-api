@@ -1,14 +1,12 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// const cookieParser = require("cookie-parser");
 
 const { createError } = require("../../helpers/createError");
 const User = require("../../models/users");
 
 const { JWT_SECRET_KEY } = process.env;
-const { JWT_REFRESH_SECRET_KEY } = process.env;
 
-async function loginUser(req, res) {
+async function refreshToken(req, res) {
   const { password, email } = req.body;
 
   const user = await User.findOne({ email });
@@ -34,17 +32,10 @@ async function loginUser(req, res) {
     id: user.id,
   };
 
-  const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: "10m" });
-  const refreshToken = jwt.sign(payload, JWT_REFRESH_SECRET_KEY, {
-    expiresIn: "10d",
-  });
+  const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: "1d" });
 
-  await User.findByIdAndUpdate(user.id, { token, refreshToken });
+  await User.findByIdAndUpdate(user.id, { token });
 
-  res.cookie("refreshToken", refreshToken, {
-    maxAge: 10 * 24 * 60 * 60,
-    httpOnly: true,
-  });
-  res.json({ token, refreshToken });
+  res.json({ token });
 }
-module.exports = loginUser;
+module.exports = refreshToken;

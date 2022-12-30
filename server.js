@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const mongoose = require("mongoose");
 const app = require("./app");
+// const cookieParser = require("cookie-parser");
 
 const { DB_HOST } = process.env;
 

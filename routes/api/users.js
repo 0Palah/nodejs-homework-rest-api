@@ -44,6 +44,11 @@ router.post(
   controllerWrapper(controllers.resendVerificationEmail)
 );
 
+router.get(
+  "/refreshToken",
+  controllerWrapper(controllers.refreshToken)
+);
+
 router.get("/verify/:verificationToken", controllerWrapper(controllers.verify));
 
 module.exports = router;

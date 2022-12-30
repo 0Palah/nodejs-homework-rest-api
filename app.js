@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const contactsRouter = require("./routes/api/contacts");
 const usersRouter = require("./routes/api/users");
@@ -13,6 +14,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/contacts", contactsRouter);
 app.use("/api/users", usersRouter);
