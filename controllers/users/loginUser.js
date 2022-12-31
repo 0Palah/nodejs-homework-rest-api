@@ -42,7 +42,7 @@ async function loginUser(req, res) {
   await User.findByIdAndUpdate(user.id, { token, refreshToken });
 
   res.cookie("refreshToken", refreshToken, {
-    maxAge: 10 * 24 * 60 * 60,
+    maxAge: 10 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   });
   res.json({ token, refreshToken });

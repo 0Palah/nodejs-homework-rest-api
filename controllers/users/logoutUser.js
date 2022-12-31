@@ -5,8 +5,10 @@ async function logoutUser(req, res) {
 
   // const { refreshToken } = req.cookies;
   // console.log(refreshToken);
+  res.clearCookie("refreshToken");
 
-  await User.updateOne({ _id }, { token: "" });
+  await User.updateOne({ _id }, { token: "", refreshToken: "" });
+
   res.status(204).json({
     message: "No Content",
   });

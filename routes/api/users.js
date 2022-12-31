@@ -40,12 +40,14 @@ router.patch(
 
 router.post(
   "/verify",
+  middlewares.authenticate,
   middlewares.validateBody(schemas.user.resendVerificationEmail),
   controllerWrapper(controllers.resendVerificationEmail)
 );
 
 router.get(
   "/refreshToken",
+  middlewares.authenticateRefreshToken,
   controllerWrapper(controllers.refreshToken)
 );
 
