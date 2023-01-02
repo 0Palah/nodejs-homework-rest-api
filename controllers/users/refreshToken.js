@@ -11,7 +11,7 @@ const { JWT_REFRESH_SECRET_KEY } = process.env;
 async function refreshToken(req, res) {
   const { id } = req.user;
 
-  const user = await User.findOne({ id });
+  const user = await User.findById({ id });
 
   if (!user) {
     throw createError({ status: 401, message: "Not authorized" });
