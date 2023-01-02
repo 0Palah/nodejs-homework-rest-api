@@ -8,9 +8,6 @@ async function authenticateRefreshToken(req, res, next) {
   try {
     // const { authorization } = req.headers;
     const { refreshToken } = req.cookies;
-    // console.log(refreshToken);
-
-    // const [bearer, token] = authorization.split(" ");
 
     if (!refreshToken) {
       throw createError({ status: 401, message: "Not authorized" });
@@ -26,7 +23,6 @@ async function authenticateRefreshToken(req, res, next) {
 
     next();
   } catch (error) {
-    console.log(1);
     if (!error.status) {
       error.status = 401;
       error.message = "Not authorized";
